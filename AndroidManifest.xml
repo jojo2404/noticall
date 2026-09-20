@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-feature android:name="android.hardware.telephony" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/noticall_icon"
+        android:label="Noticall"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Noticall">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".PhoneStateReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".ProcessMissedCallReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".SendSmsReceiver"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver
+            android:name=".SendResultReceiver"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+</manifest>
